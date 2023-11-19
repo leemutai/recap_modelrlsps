@@ -27,3 +27,27 @@ def show(request):
     # song.album.artists.all()
 
     return HttpResponse(artists)
+
+
+def save_or_fetch_artists(request):
+    return None
+
+
+def fetch_one_artist(request):
+    return None
+
+
+def delete_artist(request):
+    return None
+
+
+def update_artist(request):
+    return None
+
+
+def albums_for_artist(request):
+    return None
+
+# pip install djangorestframework
+# RESTFUL services -- apis GET, POST, PUT, PATCH, DELETE, UPDATE
+# SOAP services
