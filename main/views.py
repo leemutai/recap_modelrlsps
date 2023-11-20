@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from main.models import Artist, Song
-from main.serializers import ArtistSerializer
+from main.serializers import ArtistSerializer, ArtistAlbumSerializer
 
 
 # Create your views here.
@@ -74,11 +74,17 @@ def update_artist(request, id):
             serializer.save()
         return Response(serializer.data)
     except:
-        return Response({"error": "Artist not found"}, status=404)
+        return Response({"error": "Invalid data"}, status=404)
 
 
-def albums_for_artist(request):
-    return None
+@api_view(["GET"])
+def albums_for_artist(request, id):
+    try:
+        artist = Artist.objects.get(pk=id)
+        serializer = ArtistAlbumSerializer(instance=artist)
+        return Response(serializer.data)
+    except:
+        return Response({"error": "Invalid data"}, status=404)
 
 # pip install djangorestframework
 # RESTFUL services -- apis GET, POST, PUT, PATCH, DELETE, UPDATE
